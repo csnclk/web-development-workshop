@@ -1,3 +1,13 @@
+<?php 
+  session_start();
+  if(!isset($_SESSION['user'])){
+    header("Location: index.php");
+  }
+
+  $user = $_SESSION['user'];
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,7 +30,8 @@
               </li>
             </ul>
             <span class="navbar-text">
-              email@gmail.com
+              <?php echo $user; ?>
+              <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
             </span>
           </div>
         </div>

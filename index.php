@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if(isset($_SESSION['user'])){
+    header("Location: home.php");
+  }
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,7 +33,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
                 <div>
-                    or <a href="register.html">create a new account</a>
+                    or <a href="register.php">create a new account</a>
                 </div>
               </form>
         </div>

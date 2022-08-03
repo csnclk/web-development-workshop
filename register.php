@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if(isset($_SESSION['user'])){
+    header("Location: home.php");
+  }
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,19 +21,19 @@
         </div>
 
         <div class="m-3">
-            <form>
+            <form action="create_user.php" method="post">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input name="email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                   
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">New Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <input name="password" required type="password" class="form-control" id="exampleInputPassword1">
                 </div>
                 <button type="submit" class="btn btn-info">Register</button>
                 <div>
-                    Already registered? <a href="index.html">login here</a>
+                    Already registered? <a href="index.php">login here</a>
                 </div>
               </form>
         </div>
