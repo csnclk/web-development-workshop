@@ -5,6 +5,7 @@
   }
 
   $user = $_SESSION['user'];
+  include 'database.php';
 
 ?>
 
@@ -39,56 +40,37 @@
 
       <div>
           <div class="m-3">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            <button class="btn btn-primary mt-3">Upload</button>
+            <form action="create_post.php" method="POST">
+            <textarea name="des" required class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <button type="submit" class="btn btn-primary mt-3">Upload</button>
+            </form>
         </div>
       </div>
 
       <div class="m-3">
-        <div class="card">
+      <?php 
+      $sql = " SELECT * from posts ORDER BY id desc ";
+      $result = $conn->query($sql);
+
+      while( $row = $result->fetch_assoc() ){
+      ?>
+
+        <div class="card mb-2">
             <div class="card-header">
-              username@gmail.com
+              <?php echo $row['email'] ?>
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer"><cite title="Source Title">21-07-2022</cite></footer>
+                <p><?php echo $row['des'] ?></p>
+                <footer class="blockquote-footer"><cite title="Source Title"><?php echo $row['date'] ?></cite></footer>
               </blockquote>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              username@gmail.com
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer"><cite title="Source Title">21-07-2022</cite></footer>
-              </blockquote>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              username@gmail.com
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer"><cite title="Source Title">21-07-2022</cite></footer>
-              </blockquote>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              username@gmail.com
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p>A well-known quote, contained in a blockquote element.</p>
-                <footer class="blockquote-footer"><cite title="Source Title">21-07-2022</cite></footer>
-              </blockquote>
-            </div>
-          </div>
+          </div> 
+
+          <?php
+          }
+          ?>
+
       </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
